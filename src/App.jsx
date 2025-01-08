@@ -1,28 +1,25 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar';
-import Hero from './Hero';
-import Bitsat from './Bits';
-import Shop from './Shop';
-import Footer from './Footer';
-import Carousel from './Slider.jsx';
-import "@fortawesome/fontawesome-free/css/all.min.css";
+import Login from './login'; 
+import Hero from './Hero.jsx'
+import Shop from './Shop.jsx'
 
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <Navbar/>
-      <Carousel/>
-      <Hero/>
-      <Bitsat/>
-      <Shop/>
-      <Footer/>
+    <Router>
+      <Navbar />
       
+      <Routes>
 
-      
-    </div>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Hero />} />
+        <Route path="/shop" element={<Shop />} />
+        
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
-
