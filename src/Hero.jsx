@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 import image5 from './assets/5.jpg';
 import image6 from './assets/6.jpg';
 import image8 from './assets/7.jpeg';
 
 function Hero() {
   const games = [
-    { image: image5, title: 'Palworld', description: 'the gaame of the year 2024 ' },
-    { image: image6, title: 'fc 25', description: 'another fifa version that break the laws again' },
-    { image: image8, title: 'ARK survival evolved', description: 'dinosor game.' }
+    { image: image5, title: 'Palworld', description: 'The game of the year 2024', link: '/palworld' },
+    { image: image6, title: 'FC 25', description: 'Another FIFA version that breaks the laws again', link: '/fc25' },
+    { image: image8, title: 'ARK Survival Evolved', description: 'Dinosaur game', link: '/ark' }
   ];
 
   return (
@@ -24,12 +25,13 @@ function Hero() {
       {/* Cards Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
         {games.map((game, index) => (
-          <Card
-            key={index}
-            image={game.image}
-            title={game.title}
-            description={game.description}
-          />
+          <Link to={game.link} key={index}>  {/* Wrap the Card in a Link component */}
+            <Card
+              image={game.image}
+              title={game.title}
+              description={game.description}
+            />
+          </Link>
         ))}
       </div>
     </div>

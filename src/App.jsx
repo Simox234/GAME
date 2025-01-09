@@ -8,6 +8,7 @@ import Bits from './Bits';
 import Hero from './Hero';
 import Shop from './Shop';
 import Footer from './Footer';
+import PalworldPage from './palworld';  // New page for Palworld
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/palworld" element={<PalworldPage />} /> {/* Palworld page */}
           </Routes>
         </main>
 
