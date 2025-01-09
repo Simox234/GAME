@@ -1,15 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './Navbar';
-import Login from './login';
-import Signup from './signUp';
-import Slider from './Slider';
-import Bits from './Bits';
-import Hero from './Hero';
-import Shop from './Shop';
-import Products from './products'
-import Footer from './Footer';
-import PalworldPage from './palworld'; // New page for Palworld
+import Navbar from './components/Navbar';
+import Login from './Pages/login';
+import Signup from './Pages/signUp';
+import Slider from './components/Slider';
+import Bits from './components/Bits';
+import Hero from './components/Hero';
+import Shop from './components/Shop';
+import Products from './components/products';
+import Footer from './components/Footer';
+import PalworldPage from './Pages/palworld'; // New page for Palworld
+import Bits2 from './Pages/Bits2'
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
             <Route path="/shop" element={<Shop />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/palworld" element={<PalworldPage />} /> {/* Palworld page */}
+            <Route path="/Bits2" element={<Bits2 />} />
           </Routes>
         </main>
 
