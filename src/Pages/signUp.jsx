@@ -1,14 +1,22 @@
 import React from 'react';
 
 const Signup = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted");
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-lg p-10 h-[30rem] bg-white shadow-lg rounded-lg">
+      <div className="w-full max-w-lg p-10 bg-white shadow-lg rounded-lg">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Sign Up</h2>
-        <form>
-          {/* Name Input */}
+        <form onSubmit={handleSubmit}>
+          {/* Full Name Input */}
           <div className="mb-6">
-            <label htmlFor="name" className="block text-lg font-medium text-gray-700">
+            <label
+              htmlFor="name"
+              className="block text-lg font-medium text-gray-700"
+            >
               Full Name
             </label>
             <input
@@ -17,11 +25,16 @@ const Signup = () => {
               className="w-full px-5 py-3 mt-2 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
               placeholder="Enter your name"
               required
+              aria-label="Full Name"
             />
           </div>
+
           {/* Email Input */}
           <div className="mb-6">
-            <label htmlFor="email" className="block text-lg font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-lg font-medium text-gray-700"
+            >
               Email Address
             </label>
             <input
@@ -30,11 +43,16 @@ const Signup = () => {
               className="w-full px-5 py-3 mt-2 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
               placeholder="Enter your email"
               required
+              aria-label="Email Address"
             />
           </div>
+
           {/* Password Input */}
           <div className="mb-6">
-            <label htmlFor="password" className="block text-lg font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block text-lg font-medium text-gray-700"
+            >
               Password
             </label>
             <input
@@ -43,8 +61,10 @@ const Signup = () => {
               className="w-full px-5 py-3 mt-2 border rounded-md focus:ring-2 focus:ring-orange-400 focus:outline-none"
               placeholder="Enter your password"
               required
+              aria-label="Password"
             />
           </div>
+
           {/* Submit Button */}
           <button
             type="submit"
@@ -53,8 +73,10 @@ const Signup = () => {
             Sign Up
           </button>
         </form>
+
+        {/* Redirect to Login */}
         <p className="text-center text-base text-gray-600 mt-6">
-          Already have an account?{' '}
+          Already have an account?{" "}
           <a href="/login" className="text-orange-500 hover:underline">
             Login
           </a>

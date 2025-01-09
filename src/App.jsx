@@ -9,8 +9,12 @@ import Hero from './components/Hero';
 import Shop from './components/Shop';
 import Products from './components/products';
 import Footer from './components/Footer';
-import PalworldPage from './Pages/palworld'; // New page for Palworld
+import PalworldPage from './Pages/palworld';
 import Bits2 from './Pages/Bits2'
+import Ark from './Pages/Ark';
+import FC25 from './Pages/Fc25';
+import Play from './Pages/Play';
+
 
 const App = () => {
   return (
@@ -37,7 +41,10 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/palworld" element={<PalworldPage />} /> {/* Palworld page */}
+            <Route path="/palworld" element={<PalworldPage />} />
+            <Route path="/Ark" element={<Ark />} />
+            <Route path="/Fc25" element={<FC25 />} />
+            <Route path="/Play" element={<Play />} />
             <Route path="/Bits2" element={<Bits2 />} />
           </Routes>
         </main>
