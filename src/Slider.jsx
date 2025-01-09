@@ -31,14 +31,14 @@ function RGBCarousel() {
   };
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto text-white bg-black">
+    <div className="relative w-full max-w-screen mx-auto text-white bg-black">
       {/* Search Bar */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-10 flex justify-center">
         <form
           onSubmit={handleSearch}
           className="flex items-center bg-black/50 border border-transparent p-4 rounded-lg backdrop-blur-md"
           style={{
-            boxShadow: "0 0 15px #00ff00, 0 0 30px #ff0000, 0 0 45px #0000ff",
+            boxShadow: "0 0 15px orange, 0 0 30px orange, 0 0 45px red",
           }}
         >
           <input
@@ -46,12 +46,11 @@ function RGBCarousel() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search your adventure..."
-            className="w-96 p-3 rounded-l-md text-white bg-gray-900 border-none outline-none text-lg focus:ring-4 focus:ring-pink-500 placeholder-gray-500"
+            className="w-96 p-3 rounded-l-md text-white bg-gray-900 border-none outline-none text-lg focus:ring-4  placeholder-gray-400"
           />
           <button
             type="submit"
-            className="px-6 py-3 text-lg font-bold bg-gradient-to-r from-red-500 to-blue-500 rounded-r-md hover:scale-105 transition-all duration-300"
-            style={{
+            className="px-6 py-3 text-lg font-bold bg-gradient-to-r from-red-500 to-blue-500 rounded-r-md hover:scale-105 transition-all duration-300"            style={{
               boxShadow: "0 0 20px #ff0000, 0 0 20px #0000ff",
             }}
           >

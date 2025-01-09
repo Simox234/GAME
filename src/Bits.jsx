@@ -22,11 +22,12 @@ function Bitsat() {
 
   return (
     <>
+      {/* Section Bits */}
       <div className="p-4">
-        <h2 className="text-2xl font-bold mb-4">Bits for You</h2>
-        <div className="flex gap-4 overflow-x-auto">
+        <h2 className="text-2xl font-bold mb-4 text-center">Bits for You</h2>
+        <div className="flex flex-wrap gap-6 justify-center">
           {Bits.map((Bit, index) => (
-            <div key={index} className="min-w-[150px] bg-gray-200 p-4 rounded">
+            <div key={index} className="min-w-[150px] bg-gray-200 p-4 rounded shadow-lg">
               <img
                 src={Bit.image}
                 alt={Bit.name}
@@ -37,11 +38,16 @@ function Bitsat() {
           ))}
         </div>
       </div>
+
+      {/* Section Videos */}
       <div className="p-4">
-        <h2 className="text-2xl font-bold mb-4">Shorts for You</h2>
-        <div className="flex gap-4 overflow-x-auto">
+        <h2 className="text-2xl font-bold mb-4 text-center">Shorts for You</h2>
+        <div className="flex flex-wrap  ">
           {videos.map((video, index) => (
-            <div key={index} className="min-w-[250px] h-[400px] bg-gray-200 p-4 rounded">
+            <div
+              key={index}
+              className="min-w-[250px] h-[400px] bg-gray-200 p-4 rounded shadow-lg"
+            >
               <video
                 src={video.src}
                 controls

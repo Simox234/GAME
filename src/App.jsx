@@ -7,8 +7,9 @@ import Slider from './Slider';
 import Bits from './Bits';
 import Hero from './Hero';
 import Shop from './Shop';
+import Products from './products'
 import Footer from './Footer';
-import PalworldPage from './palworld';  // New page for Palworld
+import PalworldPage from './palworld'; // New page for Palworld
 
 const App = () => {
   return (
@@ -18,20 +19,22 @@ const App = () => {
         <Navbar />
 
         {/* Main Content Area */}
-        <main className="flex-grow">
+        <main className="flex-grow pt-16"> {/* Added padding to avoid content overlap */}
           <Routes>
             <Route
               path="/"
               element={
                 <>
+                  {/* Homepage Components */}
                   <Slider />
                   <Hero />
                   <Bits />
-                  <Shop />
+                  <Products />
                 </>
               }
             />
             <Route path="/login" element={<Login />} />
+            <Route path="/shop" element={<Shop />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/palworld" element={<PalworldPage />} /> {/* Palworld page */}
           </Routes>
