@@ -10,11 +10,11 @@ import Shop from './components/Shop';
 import Products from './components/products';
 import Footer from './components/Footer';
 import PalworldPage from './Pages/palworld';
-import Bits2 from './Pages/Bits2'
+import Bits2 from './Pages/Bits2';
 import Ark from './Pages/Ark';
 import FC25 from './Pages/Fc25';
 import Play from './Pages/Play';
-
+import Payment from './Pages/Payment';  // Import Payment component
 
 const App = () => {
   return (
@@ -46,6 +46,9 @@ const App = () => {
             <Route path="/Fc25" element={<FC25 />} />
             <Route path="/Play" element={<Play />} />
             <Route path="/Bits2" element={<Bits2 />} />
+            
+            {/* Add the Payment Route */}
+            <Route path="/payment" element={<Payment />} /> {/* Payment page route */}
           </Routes>
         </main>
 

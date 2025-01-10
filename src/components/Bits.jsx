@@ -1,83 +1,116 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import photo1 from '../assets/1.jpeg';
 import photo2 from '../assets/2.jpeg';
 import photo3 from '../assets/3.jpeg';
 import photo4 from '../assets/4.jpeg';
 
 function Bits() {
-  const Bits = [
+  const [Bits, setBits] = useState([
     { name: 'Fortnite', image: photo4 },
     { name: 'Gta V', image: photo2 },
     { name: 'Minecraft', image: photo3 },
     { name: 'Valorant', image: photo1 },
-  ];
-
-  const videos = [
+  ]);
+  
+  const [allVideos, setAllVideos] = useState([
     { id: 1, src: '/videos/video1.mp4', title: 'Valorant Match 1', category: 'fortnite' },
     { id: 2, src: '/videos/video2.mp4', title: 'Fortnite Tips', category: 'setup' },
     { id: 3, src: '/videos/video3.mp4', title: 'Pubg Highlights', category: 'gta v' },
     { id: 4, src: '/videos/video4.mp4', title: 'Free Fire Tricks', category: 'minecraft' },
     { id: 5, src: '/videos/video5.mp4', title: 'Valorant Clutch', category: 'valorant' },
     { id: 6, src: '/videos/video6.mp4', title: 'GtaV', category: 'gta v' },
-  ];
+  ]);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [newVideo, setNewVideo] = useState({
-    title: '',
-    src: '',
-    category: '',
-  });
-
-  const [videoFile, setVideoFile] = useState(null);
+  const [visibleVideos, setVisibleVideos] = useState(6);
+  const [showForm, setShowForm] = useState(false);
+  const [newVideo, setNewVideo] = useState({ title: '', src: '', category: '' });
+  
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
+  // Filter videos by selected category or search term
+  const filteredVideos = allVideos.filter((video) => {
+    const categoryMatch =
+      !selectedCategory || video.category.toLowerCase().includes(selectedCategory.toLowerCase());
+    const searchMatch =
+      video.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      video.category.toLowerCase().includes(searchTerm.toLowerCase());
+    return categoryMatch && searchMatch;
+  });
+
+  const loadMoreVideos = () => {
+    setVisibleVideos((prevVisible) => prevVisible + 6);
+  };
+
+  const handleFormToggle = () => {
+    setShowForm(!showForm);
+  };
+
   const handleVideoInputChange = (e) => {
     const { name, value } = e.target;
-    setNewVideo((prevVideo) => ({
-      ...prevVideo,
-      [name]: value,
-    }));
+    setNewVideo((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleVideoFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setVideoFile(URL.createObjectURL(file));
+      const src = URL.createObjectURL(file);
+      setNewVideo((prev) => ({ ...prev, src }));
     }
   };
 
-  const filteredVideos = selectedCategory
-    ? videos.filter((video) =>
-      video.category.toLowerCase().includes(selectedCategory.toLowerCase())
-    )
-    : videos.filter((video) =>
-      video.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      video.category.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
   const handleAddVideo = (e) => {
     e.preventDefault();
-    console.log('Adding new video:', newVideo);
-    console.log('Video file:', videoFile);
+    if (!newVideo.title || !newVideo.category) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    const newVideoObj = {
+      ...newVideo,
+      id: allVideos.length + 1,
+    };
+
+    // Add the new video to allVideos state
+    setAllVideos((prevVideos) => [...prevVideos, newVideoObj]);
+
+    // Optionally, add the new video category to Bits if it doesn't already exist
+    if (!Bits.some((bit) => bit.name.toLowerCase() === newVideo.category.toLowerCase())) {
+      setBits((prevBits) => [
+        ...prevBits,
+        { name: newVideo.category, image: '/path-to-default-image.jpg' }, // Use a default image or dynamic image
+      ]);
+    }
+
+    setShowForm(false);
+    setNewVideo({ title: '', src: '', category: '' });
+  };
+
+  // Handle video click to navigate to Bits2
+  const handleVideoClick = (videoId) => {
+    navigate(`/Bits2?videoId=${videoId}`); // Passing the videoId as a query parameter
   };
 
   return (
     <div className="p-4 bg-black min-h-screen">
       {/* Categories Section */}
       <h2 className="text-2xl font-bold mb-4 text-center text-white">Bits for You</h2>
-      <div className="flex flex-wrap gap-4 justify-center">
+      <div className="flex flex-wrap gap-4 justify-center items-center">
         {Bits.map((Bit, index) => (
           <button
             key={index}
             onClick={() => setSelectedCategory(Bit.name.toLowerCase())}
-            className={`relative min-w-[75px] h-[60px] rounded shadow-lg transition overflow-hidden ${selectedCategory === Bit.name.toLowerCase()
+            className={`relative min-w-[75px] h-[60px] rounded shadow-lg transition overflow-hidden ${
+              selectedCategory === Bit.name.toLowerCase()
                 ? 'ring-4 ring-orange-500'
                 : 'hover:ring-2 hover:ring-gray-400'
-              }`}
+            }`}
             style={{
               backgroundImage: `url(${Bit.image})`,
               backgroundSize: 'cover',
@@ -89,19 +122,52 @@ function Bits() {
             </div>
           </button>
         ))}
-        <button
-          onClick={() => {
-            setSelectedCategory(null);
-            setSearchTerm('');
-          }}
-          className="min-w-[75px] h-[60px] bg-gray-700 p-4 rounded shadow-lg hover:bg-gray-600"
-        >
-          <h3 className="text-center text-sm text-white">Show All</h3>
-        </button>
+        <div className="relative">
+          <button
+            onClick={handleFormToggle}
+            className="flex items-center justify-center w-[75px] h-[60px] bg-orange-500 text-white rounded shadow-lg hover:bg-orange-600 transition"
+          >
+            +
+          </button>
+          {showForm && (
+            <div className="absolute top-[-120px] right-0 w-[200px] bg-gray-800 p-4 rounded-lg shadow-lg z-50">
+              <h3 className="text-md font-bold text-center mb-2 text-white">Add a New Video</h3>
+              <form onSubmit={handleAddVideo} className="flex flex-col gap-2">
+                <input
+                  type="text"
+                  name="title"
+                  value={newVideo.title}
+                  onChange={handleVideoInputChange}
+                  placeholder="Title"
+                  className="p-1 border rounded shadow-md text-black"
+                />
+                <input
+                  type="file"
+                  onChange={handleVideoFileChange}
+                  className="p-1 border rounded shadow-md text-black"
+                />
+                <input
+                  type="text"
+                  name="category"
+                  value={newVideo.category}
+                  onChange={handleVideoInputChange}
+                  placeholder="Category"
+                  className="p-1 border rounded shadow-md text-black"
+                />
+                <button
+                  type="submit"
+                  className="bg-orange-500 text-white p-1 rounded hover:bg-orange-600 transition"
+                >
+                  Add
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6 flex justify-center">
+      <div className="mt-4 mb-6 flex justify-center">
         <input
           type="text"
           value={searchTerm}
@@ -117,10 +183,11 @@ function Bits() {
           {selectedCategory ? `${selectedCategory} Videos` : 'All Shorts for You'}
         </h2>
         <div className="flex flex-wrap gap-6 justify-center">
-          {filteredVideos.map((video, index) => (
+          {filteredVideos.slice(0, visibleVideos).map((video, index) => (
             <div
               key={index}
               className="min-w-[250px] bg-gray-800 p-4 rounded-lg shadow-lg transition transform hover:scale-105 hover:bg-gray-700"
+              onClick={() => handleVideoClick(video.id)} // Click handler to navigate
             >
               <video
                 src={video.src}
@@ -134,49 +201,14 @@ function Bits() {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Add Video Form */}
-      <div className="mt-6 p-4 bg-gray-800 rounded shadow-lg">
-        <h3 className="text-xl font-bold text-center mb-4 text-white">Add a New Video</h3>
-        <form onSubmit={handleAddVideo} className="flex flex-col gap-4">
-          <input
-            type="text"
-            name="title"
-            value={newVideo.title}
-            onChange={handleVideoInputChange}
-            placeholder="Video Title"
-            className="p-2 border rounded shadow-md text-black"
-          />
-          <input
-            type="file"
-            name="src"
-            onChange={handleVideoFileChange}
-            className="p-2 border rounded shadow-md text-black"
-          />
-          <input
-            type="text"
-            name="category"
-            value={newVideo.category}
-            onChange={handleVideoInputChange}
-            placeholder="Category"
-            className="p-2 border rounded shadow-md text-black"
-          />
-          <button
-            type="submit"
-            className="bg-orange-500 text-white p-2 rounded hover:bg-orange-600 transition"
-          >
-            Add Video
-          </button>
-        </form>
-        {videoFile && (
-          <div className="mt-4">
-            <h4 className="text-center text-white">Video Preview:</h4>
-            <video
-              src={videoFile}
-              controls
-              className="w-full h-[200px] object-cover mt-2 rounded-lg"
-            />
+        {visibleVideos < filteredVideos.length && (
+          <div className="mt-4 flex justify-center">
+            <button
+              onClick={loadMoreVideos}
+              className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition"
+            >
+              Show More
+            </button>
           </div>
         )}
       </div>

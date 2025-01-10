@@ -20,7 +20,7 @@ const Palworld = () => {
       <section className="mb-12">
         <h2 className="text-2xl font-semibold text-orange-400 mb-4">Game Overview</h2>
         <p className="text-lg leading-relaxed text-gray-300">
-          Palword is a thrilling multiplayer adventure game that takes you through enchanting landscapes, epic battles, and mind-bending mysteries. Dive into an expansive world where your choices and teamwork shape the outcome.
+          Palworld is a thrilling multiplayer adventure game that takes you through enchanting landscapes, epic battles, and mind-bending mysteries. Dive into an expansive world where your choices and teamwork shape the outcome.
         </p>
         <div className="mt-6">
           <video className="w-full rounded-lg shadow-lg" controls autoPlay loop muted>
