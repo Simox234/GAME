@@ -20,10 +20,10 @@ function RGBCarousel() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      handleNext();
-    }, 5000); // Change slide every 5 seconds
+      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, 2000); 
     return () => clearInterval(interval);
-  }, [currentSlide]);
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ function RGBCarousel() {
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-10 flex justify-center">
         <form
           onSubmit={handleSearch}
-          className="flex items-center bg-black/50 border border-transparent p-4 rounded-lg backdrop-blur-md"
+          className="flex items-center bg-black/50 border border-transparent p-3 rounded-lg backdrop-blur-md"
           style={{
             boxShadow: "0 0 15px orange, 0 0 30px orange, 0 0 45px red",
           }}
@@ -50,7 +50,8 @@ function RGBCarousel() {
           />
           <button
             type="submit"
-            className="px-6 py-3 text-lg font-bold bg-gradient-to-r from-red-500 to-blue-500 rounded-r-md hover:scale-105 transition-all duration-300"            style={{
+            className="px-6 py-3 text-lg font-bold bg-gradient-to-r from-red-500 to-blue-500 rounded-r-md hover:scale-105 transition-all duration-300"
+            style={{
               boxShadow: "0 0 20px #ff0000, 0 0 20px #0000ff",
             }}
           >
@@ -91,7 +92,8 @@ function RGBCarousel() {
               <div
                 className="absolute inset-x-0 bottom-10 text-center text-3xl font-extrabold bg-black/70 text-white p-3 rounded-lg"
                 style={{
-                  textShadow: "0 0 15px #00ff00, 0 0 30px #ff0000, 0 0 45px #0000ff",
+                  textShadow:
+                    "0 0 15px #00ff00, 0 0 30px #ff0000, 0 0 45px #0000ff",
                 }}
               >
                 {slide.alt}
@@ -104,9 +106,8 @@ function RGBCarousel() {
       {/* Navigation Controls */}
       <button
         onClick={handlePrev}
-        className="absolute top-1/2 left-6 transform -translate-y-1/2 flex items-center justify-center h-12 w-12 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-full hover:scale-110 transition-all duration-300 z-10 backdrop-blur-md"
+        className="absolute top-1/2 left-6 transform -translate-y-1/2 flex items-center justify-center h-12 w-12 bg-transparent text-white border-2 border-white rounded-full hover:scale-110 transition-all duration-300 z-10 backdrop-blur-md"
         style={{
-          boxShadow: "0 0 20px #00ff00, 0 0 20px #0000ff",
         }}
       >
         <span className="text-2xl font-bold">&lt;</span>
@@ -115,9 +116,9 @@ function RGBCarousel() {
 
       <button
         onClick={handleNext}
-        className="absolute top-1/2 right-6 transform -translate-y-1/2 flex items-center justify-center h-12 w-12 bg-gradient-to-r from-red-500 to-blue-500 text-white rounded-full hover:scale-110 transition-all duration-300 z-10 backdrop-blur-md"
+        className="absolute top-1/2 right-6 transform -translate-y-1/2 flex items-center justify-center h-12 w-12 bg-transparent text-white border-2 border-white rounded-full hover:scale-110 transition-all duration-300 z-10 backdrop-blur-md"
         style={{
-          boxShadow: "0 0 20px #ff0000, 0 0 20px #0000ff",
+   
         }}
       >
         <span className="text-2xl font-bold">&gt;</span>

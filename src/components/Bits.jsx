@@ -12,7 +12,7 @@ function Bits() {
     { name: 'Minecraft', image: photo3 },
     { name: 'Valorant', image: photo1 },
   ]);
-  
+
   const [allVideos, setAllVideos] = useState([
     { id: 1, src: '/videos/video1.mp4', title: 'Valorant Match 1', category: 'fortnite' },
     { id: 2, src: '/videos/video2.mp4', title: 'Fortnite Tips', category: 'setup' },
@@ -98,7 +98,7 @@ function Bits() {
   };
 
   return (
-    <div className="p-4 bg-black min-h-screen">
+    <div className="p-4 bg-gray-800 min-h-screen"> {/* Applying Midnight Blue background */}
       {/* Categories Section */}
       <h2 className="text-2xl font-bold mb-4 text-center text-white">Bits for You</h2>
       <div className="flex flex-wrap gap-4 justify-center items-center">
