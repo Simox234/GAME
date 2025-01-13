@@ -15,6 +15,9 @@ import Ark from './Pages/Ark';
 import FC25 from './Pages/Fc25';
 import Play from './Pages/Play';
 import Payment from './Pages/Payment';
+import Aboutus from './Pages/Aboutus'; // Adjust path as needed
+import PrivacyPolicy from './Pages/PrivacyPolicy'; // Adjust path as needed
+
 
 
 const App = () => {
@@ -47,6 +50,9 @@ const App = () => {
             <Route path="/Bits2" element={<Bits2 />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/contact-us" element={<ContactUs />} /> {/* New ContactUs Route */}
+            <Route path="/about-us" element={<Aboutus />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
           </Routes>
         </main>
 

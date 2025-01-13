@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube, FaPinterest } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -17,8 +17,6 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-2">Customer Service</h3>
           <ul className="space-y-2">
             <li><a href="/help" className="text-sm hover:text-orange-500">Help & FAQs</a></li>
-            <li><a href="/shipping" className="text-sm hover:text-orange-500">Shipping Information</a></li>
-            <li><a href="/returns" className="text-sm hover:text-orange-500">Returns & Exchanges</a></li>
             <li><a href="/contact-us" className="text-sm hover:text-orange-500">Contact Us</a></li>
           </ul>
         </div>
@@ -28,9 +26,6 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-2">Shop Categories</h3>
           <ul className="space-y-2">
             <li><a href="/shop/gaming-laptops" className="text-sm hover:text-orange-500">Gaming Accessories</a></li>
-            <li><a href="/shop/console-games" className="text-sm hover:text-orange-500">Gaming Chair</a></li>
-            <li><a href="/shop/pc-gaming" className="text-sm hover:text-orange-500">Headset</a></li>
-            <li><a href="/shop/accessories" className="text-sm hover:text-orange-500">Mouse, Mouse Pad</a></li>
           </ul>
         </div>
 
@@ -53,20 +48,14 @@ const Footer = () => {
             <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-orange-500">
               <FaYoutube />
             </a>
-            <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-orange-500">
-              <FaPinterest />
-            </a>
           </div>
-          
+
           <div className="text-sm space-x-2">
             <a href="/privacy-policy" className="hover:text-orange-500">Privacy Policy</a> | 
-            <a href="/terms-of-service" className="hover:text-orange-500"> Terms of Service</a> | 
             <a href="/about-us" className="hover:text-orange-500">About Us</a>
           </div>
         </div>
       </div>
-
-      
     </footer>
   );
 };
