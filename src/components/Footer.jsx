@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white p-6 text-center">
+    <footer className="bg-slate-800 text-white p-6 text-center">
       <div className="mb-4">
         <p>&copy; 2024 GamesPlay. All Rights Reserved.</p>
       </div>
